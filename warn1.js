@@ -36,7 +36,7 @@ const server = axios_.create({
 
 const app = express()
 app.use(bodyParser.json())
-
+app.disable('x-powered-by');
 
 let mSharedSecret = 'u3t4wcWYsmmdLyWJQ7R9xzpmMoKSCd7UpvYH5yXBjg0';
 let mReq;
