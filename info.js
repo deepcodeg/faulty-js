@@ -17,7 +17,7 @@ var browserVer;
 if (agt.indexOf("opera") !== -1) {
   browserType = "Opera";
 
-  if (agt.indexOf("opera 7") != -1 || agt.indexOf("opera/7") !== -1) {
+  if (agt.indexOf("opera 7") !== -1 || agt.indexOf("opera/7") !== -1) {
     browserVer = "Opera7";
   } else if (agt.indexOf("opera 8") !== -1 || agt.indexOf("opera/8") !== -1) {
     browserVer = "Opera8";
