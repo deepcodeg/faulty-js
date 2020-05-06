@@ -14,42 +14,42 @@ var agt = navigator.userAgent.toLowerCase();
 var browserType;
 var browserVer;
 
-if (agt.indexOf("opera") != -1) {
+if (agt.indexOf("opera") !== -1) {
   browserType = "Opera";
 
-  if (agt.indexOf("opera 7") != -1 || agt.indexOf("opera/7") != -1) {
+  if (agt.indexOf("opera 7") != -1 || agt.indexOf("opera/7") !== -1) {
     browserVer = "Opera7";
-  } else if (agt.indexOf("opera 8") != -1 || agt.indexOf("opera/8") != -1) {
+  } else if (agt.indexOf("opera 8") !== -1 || agt.indexOf("opera/8") !== -1) {
     browserVer = "Opera8";
-  } else if (agt.indexOf("opera 9") != -1 || agt.indexOf("opera/9") != -1) {
+  } else if (agt.indexOf("opera 9") !== -1 || agt.indexOf("opera/9") !== -1) {
     browserVer = "Opera9";
   }
-} else if (agt.indexOf("applewebkit") != -1) {
+} else if (agt.indexOf("applewebkit") !== -1) {
   browserType = "Safari";
 
-  if (agt.indexOf("version/3") != -1) {
+  if (agt.indexOf("version/3") !== -1) {
     browserVer = "Safari3";
-  } else if (agt.indexOf("safari/4") != -1) {
+  } else if (agt.indexOf("safari/4") !== -1) {
     browserVer = "Safari2";
   }
-} else if (agt.indexOf("khtml") != -1) {
+} else if (agt.indexOf("khtml") !== -1) {
   browserType = "Konqueror";
-} else if (agt.indexOf("msie") != -1) {
+} else if (agt.indexOf("msie") !== -1) {
   browserType = "IE";
 
-  if (agt.indexOf("msie 6") != -1) {
+  if (agt.indexOf("msie 6") !== -1) {
     browserVer = "IE6";
-  } else if (agt.indexOf("msie 7") != -1) {
+  } else if (agt.indexOf("msie 7") !== -1) {
     browserVer = "IE7";
   }
-} else if (agt.indexOf("gecko") != -1) {
+} else if (agt.indexOf("gecko") !== -1) {
   browserType = "Firefox";
 
-  if (agt.indexOf("rv:1.7") != -1) {
+  if (agt.indexOf("rv:1.7") !== -1) {
     browserVer = "Firefox1";
-  } else if (agt.indexOf("rv:1.8)") != -1 || agt.indexOf("rv:1.8.0") != -1) {
+  } else if (agt.indexOf("rv:1.8)") !== -1 || agt.indexOf("rv:1.8.0") !== -1) {
     browserVer = "Firefox15";
-  } else if (agt.indexOf("rv:1.8.1") != -1) {
+  } else if (agt.indexOf("rv:1.8.1") !== -1) {
     browserVer = "Firefox2";
   }
 }
@@ -188,7 +188,7 @@ function ReallyShowTip(tooltipID, linkID, docX, docY) {
     // The fallback method is to use the mouse X and Y relative to the document.  We use a separate if and test if its a number
     // in case some browser snuck through the above if statement but didn't support everything.
 
-    if (!isFinite(top) || top == 0) {
+    if (!isFinite(top) || top === 0) {
       left = docX;
       top = docY;
     }
@@ -256,7 +256,7 @@ function NDOnLoad() {
 var resizeTimer = 0;
 
 function NDOnResize() {
-  if (resizeTimer != 0) {
+  if (resizeTimer !== 0) {
     clearTimeout(resizeTimer);
   }
 
@@ -417,8 +417,8 @@ function SearchPanel(name, mode, resultsPath) {
 
     var searchValue = this.DOMSearchField().value.replace(/ +/g, "");
 
-    if (searchValue != this.lastSearchValue) {
-      if (searchValue != "") {
+    if (searchValue !== this.lastSearchValue) {
+      if (searchValue !== "") {
         this.keyTimeout = setTimeout(
           this.name + ".Search()",
           this.keyTimeoutLength
@@ -447,7 +447,7 @@ function SearchPanel(name, mode, resultsPath) {
   this.OnSearchTypeChange = function() {
     var searchValue = this.DOMSearchField().value.replace(/ +/g, "");
 
-    if (searchValue != "") {
+    if (searchValue !== "") {
       this.Search();
     }
   };
@@ -489,7 +489,7 @@ function SearchPanel(name, mode, resultsPath) {
     var hasResultsPage;
 
     // indexSectionsWithContent is defined in searchdata.js
-    if (indexSectionsWithContent[searchTopic][pageExtension] == true) {
+    if (indexSectionsWithContent[searchTopic][pageExtension] === true) {
       resultsPage =
         this.resultsPath + "/" + searchTopic + pageExtension + ".html";
       resultsPageWithSearch = resultsPage + "?" + escape(searchValue);
@@ -516,7 +516,7 @@ function SearchPanel(name, mode, resultsPath) {
       (browserType == "IE" &&
         hasResultsPage &&
         (!resultsFrame.searchResults ||
-          resultsFrame.searchResults.lastMatchCount == 0))
+          resultsFrame.searchResults.lastMatchCount === 0))
     ) {
       resultsFrame.location.href = resultsPageWithSearch;
     }
@@ -653,7 +653,7 @@ function SearchResults(name, mode) {
 
     var element = parentElement.firstChild;
 
-    while (element && element != parentElement) {
+    while (element && element !== parentElement) {
       if (element.nodeName == "DIV" && element.className == "ISubIndex") {
         if (element.style.display == "block") {
           element.style.display = "none";
@@ -669,9 +669,9 @@ function SearchResults(name, mode) {
       } else {
         do {
           element = element.parentNode;
-        } while (element && element != parentElement && !element.nextSibling);
+        } while (element && element !== parentElement && !element.nextSibling);
 
-        if (element && element != parentElement) {
+        if (element && element !== parentElement) {
           element = element.nextSibling;
         }
       }
@@ -744,7 +744,7 @@ function SearchResults(name, mode) {
 
         if (
           search.length <= rowMatchName.length &&
-          rowMatchName.substr(0, search.length) == search
+          rowMatchName.substr(0, search.length) === search
         ) {
           row.style.display = "block";
           matches++;
@@ -758,7 +758,7 @@ function SearchResults(name, mode) {
 
     document.getElementById("Searching").style.display = "none";
 
-    if (matches == 0) {
+    if (matches === 0) {
       document.getElementById("NoMatches").style.display = "block";
     } else {
       document.getElementById("NoMatches").style.display = "none";
